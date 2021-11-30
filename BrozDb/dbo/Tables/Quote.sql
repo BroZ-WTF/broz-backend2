@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Quote]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Date] DATE NOT NULL,
+	[Names] NVARCHAR(100) NOT NULL,
+	[Quote] NVARCHAR(1000) NOT NULL,
+	[Visibility] INT NOT NULL
+)
