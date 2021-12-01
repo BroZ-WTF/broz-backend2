@@ -11,22 +11,22 @@ public class QuoteData : IQuoteData {
     }
 
     public Task<IEnumerable<QuoteModel>> GetQuotesAsync() {
-        return db.LoadDataAsync<QuoteModel, dynamic>("dbo.spQuotes_GetAll", new { });
+        return db.LoadDataAsync<QuoteModel, dynamic>("dbo.spQuote_GetAll", new { });
     }
 
-    public async Task<QuoteModel?> GetQuoteAsync(string id) {
-        return (await db.LoadDataAsync<QuoteModel, dynamic>("dbo.spQuotes_Get", new { Id = id })).FirstOrDefault();
+    public async Task<QuoteModel?> GetQuoteAsync(int id) {
+        return (await db.LoadDataAsync<QuoteModel, dynamic>("dbo.spQuote_Get", new { Id = id })).FirstOrDefault();
     }
 
     public Task InsertQuoteAsync(QuoteModel quote) {
-        return db.SaveDataAsync("dbo.spQuotes_Insert", new { quote.Date, quote.Names, quote.Quote, quote.Visibility });
+        return db.SaveDataAsync("dbo.spQuote_Insert", new { quote.Date, quote.Names, quote.Quote, quote.Visibility });
     }
 
     public Task UpdateQuoteAsync(QuoteModel quote) {
-        return db.SaveDataAsync("dbo.spQuotes_Update", quote);
+        return db.SaveDataAsync("dbo.spQuote_Update", quote);
     }
 
-    public Task DeleteQuoteAsync(string id) {
-        return db.SaveDataAsync("dbo.spQuotes_Delete", new { Id = id });
+    public Task DeleteQuoteAsync(int id) {
+        return db.SaveDataAsync("dbo.spQuote_Delete", new { Id = id });
     }
 }
